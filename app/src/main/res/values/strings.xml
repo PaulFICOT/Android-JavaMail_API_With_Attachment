@@ -1,3 +1,27 @@
 <resources>
     <string name="app_name">Android-JavaMail_API_With_Attachment</string>
+    <string name="menu">Paul FICOT</string>
+    <string name="blank"> </string>
+
+    <!-- NO CONNECTION _________________________________________________________________________ -->
+    <string name="no_connection_text">Internet is not available</string>
+    <string name="no_connection_button">Back to the menu</string>
+
+    <!-- CARDBOARD MENU ________________________________________________________________________ -->
+    <string name="card">Mail sender</string>
+
+    <!-- MAIL SENDER ___________________________________________________________________________ -->
+    <string name="firstname_hint">Firstname</string>
+    <string name="lastname_hint">Lastname</string>
+    <string name="phone_hint">Phone number</string>
+    <string name="subject_hint">Subject</string>
+    <string name="body_hint">Body</string>
+    <string name="attachment_button">Picture</string>
+    <string name="send_button">Send</string>
+    <string name="select_source">Select the source</string>
+    <string name="permission_denied">Permission denied</string>
+    <string-array name="attachment_choice">
+        <item>Camera</item>
+        <item>Gallery</item>
+    </string-array>
 </resources>

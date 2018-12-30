@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_low"
+    tools:context=".MainActivity" >
+
+
+    <!-- Titre -->
+    <TextView
+        android:id="@+id/texttitle_xml"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="47dp"
+        android:layout_marginLeft="47dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="47dp"
+        android:layout_marginRight="47dp"
+        android:onClick="openBrowserInternetCheck"
+        android:text="@string/menu"
+        android:textColor="@android:color/white"
+        android:textSize="34sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Champs Prénom -->
+    <EditText
+        android:id="@+id/firstname_xml"
+        android:layout_width="162dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="25dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="40dp"
+        android:hint="@string/firstname_hint"
+        android:inputType="textCapWords"
+        android:nextFocusRight="@id/lastname_xml"
+        app:layout_constraintBottom_toTopOf="@+id/phone_xml"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/texttitle_xml"
+        tools:ignore="Autofill"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="20dp" />
+
+    <!-- Champs Nom -->
+    <EditText
+        android:id="@+id/lastname_xml"
+        android:layout_width="162dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="25dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="40dp"
+        android:hint="@string/lastname_hint"
+        android:inputType="textCapCharacters"
+        app:layout_constraintBottom_toTopOf="@+id/phone_xml"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/texttitle_xml"
+        tools:ignore="Autofill"
+        android:layout_alignParentLeft="true"
+        android:layout_marginRight="20dp" />
+
+    <!-- Champs Numéro de téléphone -->
+    <EditText
+        android:id="@+id/phone_xml"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="25dp"
+        android:hint="@string/phone_hint"
+        android:inputType="phone"
+        app:layout_constraintEnd_toEndOf="@+id/lastname_xml"
+        app:layout_constraintStart_toStartOf="@+id/lastname_xml"
+        app:layout_constraintTop_toBottomOf="@+id/firstname_xml"
+        tools:ignore="Autofill"
+        android:layout_alignParentLeft="true" />
+
+    <!-- Champs Objet du mail -->
+    <EditText
+        android:id="@+id/subject_xml"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginEnd="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="25dp"
+        android:hint="@string/subject_hint"
+        android:inputType="textCapSentences"
+        app:layout_constraintEnd_toEndOf="@+id/phone_xml"
+        app:layout_constraintStart_toStartOf="@+id/phone_xml"
+        app:layout_constraintTop_toBottomOf="@+id/phone_xml"
+        tools:ignore="Autofill"
+        android:layout_alignParentLeft="true" />
+
+    <!-- Champs Corps du mail -->
+    <EditText
+        android:id="@+id/body_xml"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="25dp"
+        android:hint="@string/body_hint"
+        android:inputType="textCapSentences"
+        app:layout_constraintEnd_toEndOf="@+id/subject_xml"
+        app:layout_constraintStart_toStartOf="@+id/subject_xml"
+        app:layout_constraintTop_toBottomOf="@+id/subject_xml"
+        tools:ignore="Autofill"
+        android:layout_alignParentRight="true" />
+
+    <!-- Bouton pour envoyer le mail -->
+    <Button
+        android:id="@+id/send_xml"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="148dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginEnd="8dp"
+        android:onClick="onClickSend"
+        android:text="@string/send_button"
+        app:layout_constraintEnd_toEndOf="@+id/body_xml"
+        app:layout_constraintStart_toStartOf="@+id/body_xml"
+        app:layout_constraintTop_toBottomOf="@+id/body_xml"
+        android:layout_marginRight="8dp"
+        android:layout_marginLeft="148dp" />
+
+    <!-- Bouton pour envoyer l'ajout de pièces jointes -->
+    <Button
+        android:id="@+id/attachment_xml"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginEnd="148dp"
+        android:layout_marginRight="148dp"
+        android:onClick="onClickImage"
+        android:text="@string/attachment_button"
+        app:layout_constraintEnd_toEndOf="@+id/body_xml"
+        app:layout_constraintStart_toStartOf="@+id/body_xml"
+        app:layout_constraintTop_toBottomOf="@+id/body_xml" />
+
+    <TextView
+        android:id="@+id/txtPath_xml"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginBottom="10dp"
+        android:text="@string/blank"
+        app:layout_constraintBottom_toTopOf="@+id/send_xml"
+        app:layout_constraintStart_toStartOf="@+id/body_xml"
+        app:layout_constraintTop_toBottomOf="@+id/body_xml" />
+
+</android.support.constraint.ConstraintLayout>
