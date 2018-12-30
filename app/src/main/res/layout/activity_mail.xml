@@ -5,11 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_low"
+    android:background="@drawable/bg"
     tools:context=".MainActivity" >
-
-
-    <!-- Titre -->
     <TextView
         android:id="@+id/texttitle_xml"
         android:layout_width="wrap_content"
@@ -21,53 +18,64 @@
         android:layout_marginEnd="47dp"
         android:layout_marginRight="47dp"
         android:onClick="openBrowserInternetCheck"
-        android:text="@string/menu"
+        android:text="@string/menu_title"
         android:textColor="@android:color/white"
-        android:textSize="34sp"
+        android:textSize="50sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Champs Prénom -->
+    <TextView
+        android:id="@+id/texttitle_xml2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="168dp"
+        android:layout_marginLeft="168dp"
+        android:onClick="openBrowserInternetCheck"
+        android:text="@string/menu_author"
+        android:textColor="@android:color/white"
+        android:textSize="32sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/texttitle_xml" />
+
     <EditText
         android:id="@+id/firstname_xml"
         android:layout_width="162dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
-        android:layout_marginBottom="25dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="110dp"
+        android:layout_marginBottom="25dp"
         android:hint="@string/firstname_hint"
         android:inputType="textCapWords"
         android:nextFocusRight="@id/lastname_xml"
         app:layout_constraintBottom_toTopOf="@+id/phone_xml"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/texttitle_xml"
-        tools:ignore="Autofill"
-        android:layout_alignParentLeft="true"
-        android:layout_marginLeft="20dp" />
+        tools:ignore="Autofill" />
 
-    <!-- Champs Nom -->
     <EditText
         android:id="@+id/lastname_xml"
         android:layout_width="162dp"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginBottom="25dp"
+        android:layout_marginTop="110dp"
         android:layout_marginEnd="20dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="25dp"
         android:hint="@string/lastname_hint"
         android:inputType="textCapCharacters"
         app:layout_constraintBottom_toTopOf="@+id/phone_xml"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/texttitle_xml"
-        tools:ignore="Autofill"
-        android:layout_alignParentLeft="true"
-        android:layout_marginRight="20dp" />
+        tools:ignore="Autofill" />
 
-    <!-- Champs Numéro de téléphone -->
     <EditText
         android:id="@+id/phone_xml"
         android:layout_width="match_parent"
@@ -87,7 +95,6 @@
         tools:ignore="Autofill"
         android:layout_alignParentLeft="true" />
 
-    <!-- Champs Objet du mail -->
     <EditText
         android:id="@+id/subject_xml"
         android:layout_width="match_parent"
@@ -107,7 +114,6 @@
         tools:ignore="Autofill"
         android:layout_alignParentLeft="true" />
 
-    <!-- Champs Corps du mail -->
     <EditText
         android:id="@+id/body_xml"
         android:layout_width="match_parent"
@@ -127,7 +133,6 @@
         tools:ignore="Autofill"
         android:layout_alignParentRight="true" />
 
-    <!-- Bouton pour envoyer le mail -->
     <Button
         android:id="@+id/send_xml"
         android:layout_width="wrap_content"
@@ -145,7 +150,6 @@
         android:layout_marginRight="8dp"
         android:layout_marginLeft="148dp" />
 
-    <!-- Bouton pour envoyer l'ajout de pièces jointes -->
     <Button
         android:id="@+id/attachment_xml"
         android:layout_width="wrap_content"
@@ -174,5 +178,4 @@
         app:layout_constraintBottom_toTopOf="@+id/send_xml"
         app:layout_constraintStart_toStartOf="@+id/body_xml"
         app:layout_constraintTop_toBottomOf="@+id/body_xml" />
-
 </android.support.constraint.ConstraintLayout>

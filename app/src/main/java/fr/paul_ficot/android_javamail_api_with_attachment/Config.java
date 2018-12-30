@@ -9,7 +9,7 @@ package fr.paul_ficot.android_javamail_api_with_attachment;
 
  class Config {
      //GENERAL
-     static final String LINK_ME = "http://www.paul_ficot.cf"; //URL Site de la ville
+     static final String LINK_ME = "http://www.paul_ficot.cf"; //URL of my website
 
     //MAIL SENDER
     static final String MAIL_SENDER ="sender@mail.com"; //Mail adress of the sender

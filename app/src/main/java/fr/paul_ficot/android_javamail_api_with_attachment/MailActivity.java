@@ -14,14 +14,13 @@ import android.widget.Toast;
 import static fr.paul_ficot.android_javamail_api_with_attachment.MainActivity.isNetworkStatusAvailable;
 
 /**
- *
  * @author Paul FICOT
  * @version 2.0
  */
 
 public class MailActivity extends AppCompatActivity implements MediaUtils.GetImg {
 
-    //Déclaration EditText
+    //Declaration EditText
     private EditText subject;
     private EditText body;
     private EditText firstname;
@@ -33,63 +32,47 @@ public class MailActivity extends AppCompatActivity implements MediaUtils.GetImg
     MediaUtils mMediaUtils;
     private String TAG = MailActivity.class.getSimpleName();
 
-    /**
-     * Affiche la vue correspondant à la méthode lors de sa création
-     *
-     * @param savedInstanceState Sauvegarde de l'état de l'instance
-     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mail);
 
-        // Initialisation des EditText de saisie d'informations
+        //Initialize EditText to enter information
         subject = findViewById(R.id.subject_xml);
         body = findViewById(R.id.body_xml);
         firstname = findViewById(R.id.firstname_xml);
         lastname = findViewById(R.id.lastname_xml);
         phone = findViewById(R.id.phone_xml);
 
-        // Initialisation MediaUtils
+        //MediaUtils initialization
         mMediaUtils = new MediaUtils(this);
 
-        //Initialisation du TextView affichant le path
+        //Initializing the TextView displaying the path
         txtPath = findViewById(R.id.txtPath_xml);
     }
 
-    /**
-     * Envoies le mail avec les paramètres définis auparavant
-     */
     private void sendEmailWithAttachment() {
-        // Obtention du contenu du mail
+        //Obtaining the contents of the email
         String subject_mail = subject.getText().toString().trim();
         String message = "Nom / Prénom : " + firstname.getText().toString().trim() + " " + lastname.getText().toString().trim() + "\n" +"Téléphone : " + phone.getText().toString().trim() + "\n" + "\n" + "Description du problème : " + "\n" + body.getText().toString().trim() + "\n" + "\n" + "Cordialement, " +  firstname.getText().toString().trim() + " " + lastname.getText().toString().trim();
-        //Création de l'objet SendMail
+        //Creating the SendMail object
         SendMailWithAttachment sendMailWithAttachment = new SendMailWithAttachment(this, subject_mail, message);
 
-        //Exécuter sendEmail pour envoyer un mail
+        //Run sendMail to send an email
         sendMailWithAttachment.execute();
     }
 
-    /**
-     * Envoies le mail avec les paramètres définis auparavant
-     */
     private void sendEmailNoAttachment() {
-        // Obtention du contenu du mail
+        //Obtaining the contents of the email
         String subject_mail = subject.getText().toString().trim();
         String message = "Nom / Prénom : " + firstname.getText().toString().trim() + " " + lastname.getText().toString().trim() + "\n" +"Téléphone : " + phone.getText().toString().trim() + "\n" + "\n" + "Description du problème : " + "\n" + body.getText().toString().trim() + "\n" + "\n" + "Cordialement, " +  firstname.getText().toString().trim() + " " + lastname.getText().toString().trim();
-        //Création de l'objet SendMail
+        //Creating the SendMail object
         SendMailNoAttachment sendMailNoAttachment = new SendMailNoAttachment(this, subject_mail, message);
 
-        //Exécuter sendEmail pour envoyer un mail
+        //Run sendMail to send an email
         sendMailNoAttachment.execute();
     }
 
-    /**
-     * Exécuter la fonction sendEmail lorsque l'on clique sur le bouton
-     *
-     * @param view Vue après l'envoie
-     */
     public void onClickSend(View view) {
 
         if (!Config.ATTACHMENT_PATH.equals(""))
@@ -111,47 +94,23 @@ public class MailActivity extends AppCompatActivity implements MediaUtils.GetImg
         Config.ATTACHMENT_PATH = "";
     }
 
-    /**
-     * Exécuter la fonction openFolder lorsque l'on clique sur le bouton
-     *
-     * @param view vue actuelle
-     */
     public void onClickImage(View view) {
 
         mMediaUtils.openImageDialog();
     }
 
-    /**
-     * Actions à effectuer en fonction de la réponse aux requêtes de permissions
-     *
-     * @param requestCode Code de vérification de la requête
-     * @param permissions Permissions demandés
-     * @param grantResults Résultat de la demande de permission
-     */
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         mMediaUtils.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
-    /**
-     * Actions à effectuer en fonction de l'image selectionnée
-     *
-     * @param requestCode Code de vérification de la requête
-     * @param resultCode Code de vérification du résultat
-     * @param data Intent
-     */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         mMediaUtils.onActivityResult(requestCode, resultCode, data);
     }
 
-    /**
-     * Interface de GetImg de la classe MediaUtils
-     *
-     * @param imgPath chemin vers l'image selectionnée
-     */
     @Override
     public void imgdata(String imgPath) {
         Log.d(TAG, "imgdata: " + imgPath);
@@ -159,11 +118,6 @@ public class MailActivity extends AppCompatActivity implements MediaUtils.GetImg
         txtPath.setText(Config.ATTACHMENT_PATH);
     }
 
-    /**
-     * Ouvre le site web via un navigateur lorsque l'on clique sur "VILLE DE RAISMES" SI l'appareil est connecté à internet
-     *
-     * @param view Vue actuelle
-     */
     public void openBrowserInternetCheck(View view) {
 
         String link_Me = Config.LINK_ME;

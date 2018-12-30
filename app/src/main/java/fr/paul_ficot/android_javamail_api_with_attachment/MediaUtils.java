@@ -29,9 +29,6 @@ import java.io.IOException;
 import java.io.OutputStream;
 
 /**
- * Classe de sélection du choix de la source de l'image
- * ainsi que de détermination du chemin vers cette image
- *
  * @author Paul FICOT
  * @version 1.1
  */
@@ -134,14 +131,6 @@ class MediaUtils {
         }
     }
 
-
-    /**
-     * Actions à effectuer en fonction de l'image selectionnée
-     *
-     * @param requestCode Code de vérification de la requête
-     * @param resultCode Code de vérification du résultat
-     * @param data Intent
-     */
     void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == Activity.RESULT_OK) {
             if (requestCode == REQ_CAMERA) {
@@ -158,13 +147,6 @@ class MediaUtils {
         }
     }
 
-    /**
-     * Fonction va permettre d'obtenir le chemin vers l'image sélectionnée dans la galerie
-     *
-     * @param context Activité actuelle
-     * @param uri uri de l'image
-     * @return le chemin vers l'image
-     */
     private String getPath(Context context, Uri uri) {
         String[] projection = {MediaStore.Images.Media.DATA};
         Cursor cursor = context.getContentResolver().query(uri, projection, null, null, null);
@@ -179,26 +161,9 @@ class MediaUtils {
             return uri.getPath();
     }
 
-    /**
-     * Fonction qui va faire pivoter l'image dans le bon sens
-     *
-     * @param context Activité actuelle
-     * @param uri uri de l'image
-     * @return chemin vers l'image
-     */
     private Bitmap rotateImageIfNeed(Context context, Uri uri) {
 
-//        String filePath = getRealPathFromURI(context, uri);
         String filePath = getPath(context, uri);
-
-        /*BitmapFactory.Options options = new BitmapFactory.Options();
-
-        // by setting this field as true, the actual bitmap pixels are not loaded in the memory. Just the bounds are loaded. If
-        // you try the use the bitmap here, you will get null.
-
-        options.inJustDecodeBounds = true;
-        Bitmap bitmap = BitmapFactory.decodeFile(filePath, options);*/
-
 
         Bitmap bitmap = null;
         try {
@@ -206,9 +171,6 @@ class MediaUtils {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
-        // check the rotation of the image and display it properly
 
         ExifInterface exif;
         try {
@@ -239,13 +201,6 @@ class MediaUtils {
         return null;
     }
 
-    /**
-     * Fonction qui va créer un fichier Bitmap grâce à la photo prise
-     *
-     * @param context Activité actuelle
-     * @param bitmap fichier bitmap pris en photo
-     * @return chemin vers la photo
-     */
     private String getFileFromBitmap(Context context, Bitmap bitmap) {
         String folderPath =  Environment.getExternalStorageDirectory() + File.separator + context.getString(R.string.app_name) + File.separator;
         File file = new File(folderPath);
@@ -270,9 +225,6 @@ class MediaUtils {
         return imageFile.getPath();
     }
 
-    /**
-     * Interface qui va permettre de sortir le chemin vers l'image hors de la classe
-     */
     interface GetImg {
         void imgdata(String imgPath);
     }

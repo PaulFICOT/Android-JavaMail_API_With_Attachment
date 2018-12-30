@@ -1,14 +1,17 @@
 <resources>
     <string name="app_name">Android-JavaMail_API_With_Attachment</string>
-    <string name="menu">Paul FICOT</string>
+    <string name="menu_title">GMail Sender</string>
+    <string name="menu_author">by Paul FICOT</string>
+
     <string name="blank"> </string>
 
     <!-- NO CONNECTION _________________________________________________________________________ -->
     <string name="no_connection_text">Internet is not available</string>
     <string name="no_connection_button">Back to the menu</string>
+    <string name="no_connection_desc">Wifi image</string>
 
     <!-- CARDBOARD MENU ________________________________________________________________________ -->
-    <string name="card">Mail sender</string>
+    <string name="card">Send a mail !</string>
 
     <!-- MAIL SENDER ___________________________________________________________________________ -->
     <string name="firstname_hint">Firstname</string>

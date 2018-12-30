@@ -4,48 +4,64 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_low">
-
+    android:background="@drawable/bg">
     <TextView
         android:id="@+id/textGrid"
         android:layout_width="wrap_content"
-        android:layout_height="43dp"
+        android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:layout_marginStart="47dp"
         android:layout_marginLeft="47dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="47dp"
         android:layout_marginRight="47dp"
-        android:tag="http://www.paul_ficot.cf"
-        android:text="@string/menu"
+        android:onClick="openBrowserInternetCheck"
+        android:text="@string/menu_title"
         android:textColor="@android:color/white"
-        android:textSize="34sp"
+        android:textSize="50sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textGrid2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="168dp"
+        android:layout_marginLeft="168dp"
+        android:onClick="openBrowserInternetCheck"
+        android:text="@string/menu_author"
+        android:textColor="@android:color/white"
+        android:textSize="32sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textGrid" />
 
     <ImageView
         android:id="@+id/img_no_connection"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="100dp"
         android:layout_marginBottom="20dp"
+        android:contentDescription="@string/no_connection_desc"
         android:src="@drawable/no_connection"
         app:layout_constraintBottom_toTopOf="@+id/textView"
         app:layout_constraintEnd_toEndOf="@+id/textGrid"
+        app:layout_constraintHorizontal_bias="0.591"
         app:layout_constraintStart_toStartOf="@+id/textGrid"
         app:layout_constraintTop_toBottomOf="@+id/textGrid" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="42dp"
         android:layout_marginStart="24dp"
         android:layout_marginLeft="24dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="24dp"
         android:layout_marginRight="24dp"
         android:gravity="center"
+        android:text="@string/no_connection_text"
         android:textColor="@color/custom_blue"
         android:textSize="32sp"
         android:textStyle="normal"
@@ -59,13 +75,13 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:onClick="onClickNoConnection"
         android:text="@string/no_connection_button"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="@+id/textView"
         app:layout_constraintStart_toStartOf="@+id/textView"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
-
 </android.support.constraint.ConstraintLayout>

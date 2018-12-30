@@ -13,20 +13,13 @@ import android.widget.GridLayout;
 import android.widget.Toast;
 
 /**
- * Classe de création d'un menu afin d'organiser les différentes catégories de l'application
- *
  * @author Paul FICOT
  * @version 1.0
  */
 public class MainActivity extends AppCompatActivity {
-
+    
     GridLayout mainGrid;
 
-    /**
-     * Affiche la vue correspondant à la méthode lors de sa création
-     *
-     * @param savedInstanceState Sauvegarde de l'état de l'instance
-     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

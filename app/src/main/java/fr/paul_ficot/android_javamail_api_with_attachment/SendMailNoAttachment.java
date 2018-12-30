@@ -18,26 +18,30 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
+/**
+ * @author Paul FICOT
+ * @version 2.0
+ */
 public class SendMailNoAttachment extends AsyncTask<Void,Void,Void> {
 
 
-    //Déclaration des variables
+    //Variable declaration
     @SuppressLint("StaticFieldLeak")
     private Context context_mail;
 
-    //Informations pour envoyer le mail
+    //Information to send the mail
     private String subject_mail;
     private String message_mail;
 
-    //Progressdialog à afficher lors de l'envoi du mail
+    //Progressdialog to display when sending the mail
     private ProgressDialog progressDialog;
 
     /**
-     * Constructeur de la classe SendMail
+     * SendMail class constructor
      *
      * @param context Context
-     * @param subject Corps du mail
-     * @param message Titre/Objet du mail
+     * @param subject Body of the mail
+     * @param message Mail object
      */
     SendMailNoAttachment(Context context, String subject, String message){
         //Initializing variables
@@ -47,46 +51,49 @@ public class SendMailNoAttachment extends AsyncTask<Void,Void,Void> {
 
     }
 
+    /**
+     * Displaying an animation "Please wait ..." when clicking on the "Send" button
+     */
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
-        //Affichage de la progression lors de l'envoi du mail
-        progressDialog = ProgressDialog.show(context_mail,"Envoi en cours","Veuillez patienter...",false,false);
+        //Showing progress when sending the mail
+        progressDialog = ProgressDialog.show(context_mail,"Sending","Please wait...",false,false);
     }
 
     /**
-     * Disparition du "Veuillez patienter..." et Affichage de "Message envoyé" une fois le mail envoyé
+     * Disappearance of "Please wait ..." and "Message sent" display after the mail is sent
      *
-     * @param aVoid paramètres
+     * @param aVoid Settings
      */
     @Override
     protected void onPostExecute(Void aVoid) {
         super.onPostExecute(aVoid);
-        //Rejeter l'affichage de la progression
+        //Dismiss the progress display
         progressDialog.dismiss();
         //Showing a success message
-        Toast.makeText(context_mail,"Message envoyé",Toast.LENGTH_LONG).show();
+        Toast.makeText(context_mail,"Message sent",Toast.LENGTH_LONG).show();
     }
 
     /**
-     * Actions réalisées en arrière-plan lorsque l'on appuie sur le bouton
+     * Actions performed in the background when the button is pressed
      *
-     * @param params Paramètres de connexion au SMTP
+     * @param params SMTP connection settings
      * @return null
      */
     @Override
     protected Void doInBackground(Void... params) {
-        //Création des propriétés
+        //Creating properties
         Properties props = new Properties();
 
-        //Configuration des propriétés pour GMail
+        //Configuring properties for GMail
         props.put("mail.smtp.host", "smtp.gmail.com");
         props.put("mail.smtp.socketFactory.port", "465");
         props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
         props.put("mail.smtp.auth", "true");
         props.put("mail.smtp.port", "465");
 
-        //Création d'une nouvelle session
+        //Creating a new session
         Session session = Session.getDefaultInstance(props,
                 new javax.mail.Authenticator() {
                     //Authentification du mot de passe
@@ -102,34 +109,34 @@ public class SendMailNoAttachment extends AsyncTask<Void,Void,Void> {
                 });
 
         try {
-            //Création de l'objet mimeMessage
+            //Creating the mimeMessage object
             MimeMessage mimeMessage_mail = new MimeMessage(session);
 
-            //Création de l'objet mimeMultipart
+            //Creating the mimeMultipart object
             MimeMultipart mimeMultipart_mail = new MimeMultipart();
 
-            //Création de l'objet mimeBodyPart pour le message texte
+            //Creating the mimeBodyPart object for the text message
             MimeBodyPart messageBodyPart_mail = new MimeBodyPart();
 
-            //Ajout du message
+            //Adding the message
             messageBodyPart_mail.setContent(message_mail, "text/plain; charset=UTF-8");
 
-            //Ajout du BodyPart pour le message texte
+            //Adding the BodyPart for the text message
             mimeMultipart_mail.addBodyPart(messageBodyPart_mail);
 
-            //Définition de l'adresse de l'expéditeur
+            //Setting the sender's address
             mimeMessage_mail.setFrom(new InternetAddress(Config.MAIL_SENDER));
 
-            //Ajout du destinataire
+            //Adding the email receiver
             mimeMessage_mail.addRecipient(Message.RecipientType.TO, new InternetAddress(Config.MAIL_RECEIVER));
 
-            //Ajout de l'objet du mail
+            //Adding the subject of the email
             mimeMessage_mail.setSubject(subject_mail);
 
-            //Rassemblement des infos dans le multipart
+            //Gathering info in the multipart
             mimeMessage_mail.setContent(mimeMultipart_mail);
 
-            //Envoi du mail
+            //Sending the mail
             Transport.send(mimeMessage_mail);
         } catch (MessagingException e) {
             e.printStackTrace();
