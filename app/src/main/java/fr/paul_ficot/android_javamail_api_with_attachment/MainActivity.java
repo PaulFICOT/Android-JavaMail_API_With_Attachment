@@ -13,6 +13,8 @@ import android.widget.GridLayout;
 import android.widget.Toast;
 
 /**
+ * MailSender using JavaMail API and GMail SMTP with image attachment
+ *
  * @author Paul FICOT
  * @version 1.0
  */
@@ -20,6 +22,11 @@ public class MainActivity extends AppCompatActivity {
     
     GridLayout mainGrid;
 
+    /**
+     * Displays the view corresponding to the method when it was created
+     *
+     * @param savedInstanceState Backing up the state of the instance
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +39,11 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Creates a CardView for each "child" of mainGrid
+     *
+     * @param mainGrid Grid layout from the XML file linked to this Java file
+     */
     private void setSingleEvent(GridLayout mainGrid) {
         //Loop all children of mainGrid
         for (int i = 0; i < mainGrid.getChildCount(); i++) {
@@ -39,6 +51,11 @@ public class MainActivity extends AppCompatActivity {
             final int cardChoice = i;
             cardView.setOnClickListener(new View.OnClickListener() {
 
+                /**
+                 * Execute the activity corresponding to the cardChoice value
+                 *
+                 * @param view current view
+                 */
                 @Override
                 public void onClick(View view) {
                     if (cardChoice == 0){
@@ -60,6 +77,11 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Opens the website via a browser when you click on "Paul FICOT" IF the device is connected to the internet
+     *
+     * @param view current view
+     */
     public void openBrowserInternetCheck(View view) {
 
         String url = (String) view.getTag();
@@ -78,6 +100,12 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Detects if the device is connected to the internet
+     *
+     * @param context context
+     * @return state of the internet connection
+     */
     public static boolean isNetworkStatusAvailable ( Context context ){
         ConnectivityManager connectivityManager = (ConnectivityManager)
                 context.getSystemService ( Context.CONNECTIVITY_SERVICE );
@@ -90,14 +118,29 @@ public class MainActivity extends AppCompatActivity {
         return false;
     }
 
+    /**
+     * Returns to the MainActivity activity when the device is not connected to the internet
+     *
+     * @param view current view
+     */
     public void onClickNoConnection (View view) {
         Intent intent = new Intent(MainActivity.this, MainActivity.class);
         startActivity(intent);
     }
 
+    /**
+     * Allow to send the mail
+     *
+     * @param view current view
+     */
     public void onClickSend(View view) {
     }
 
+    /**
+     * Allow to add an image as an attachment in the mail
+     *
+     * @param view current view
+     */
     public void onClickImage(View view) {
     }
 }

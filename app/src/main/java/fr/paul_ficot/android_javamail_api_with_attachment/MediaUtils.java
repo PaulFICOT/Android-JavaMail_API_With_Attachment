@@ -29,8 +29,11 @@ import java.io.IOException;
 import java.io.OutputStream;
 
 /**
+ * Selection class of the choice of the source of the image
+ * as well as determining the path to this image
+ *
  * @author Paul FICOT
- * @version 1.1
+ * @version 1.2
  */
 
 class MediaUtils {
@@ -45,17 +48,26 @@ class MediaUtils {
 
     private final String TAG = MediaUtils.class.getSimpleName();
 
-
-    public MediaUtils(Activity activity) {
+    /**
+     * Initialize the activity
+     *
+     * @param activity current activity
+     */
+    MediaUtils(Activity activity) {
         mActivity = activity;
         mGetImg = (GetImg) activity;
     }
 
-
-    public void openImageDialog() {
+    /**
+     * Selection of actions according to SDK version
+     */
+    void openImageDialog() {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(mActivity);
         alertDialogBuilder.setTitle(R.string.select_source).setItems(R.array.attachment_choice, new DialogInterface.OnClickListener() {
             @Override
+            /**
+             * Perform the desired action based on the version of SDK you choose
+             */
             public void onClick(DialogInterface dialog, int which) {
                 if (which == 0) {
                     // camera
@@ -80,7 +92,9 @@ class MediaUtils {
         alertDialogBuilder.create().show();
     }
 
-
+    /**
+     * Function that will open the gallery
+     */
     @SuppressLint("IntentReset")
     private void openGallery() {
         Intent intent2 = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
@@ -88,6 +102,9 @@ class MediaUtils {
         mActivity.startActivityForResult(intent2, REQ_GALLERY);
     }
 
+    /**
+     * Function that will open the camera
+     */
     private void openCamera() {
         imageUri = mActivity.getContentResolver().insert(
                 MediaStore.Images.Media.EXTERNAL_CONTENT_URI, new ContentValues());
@@ -96,6 +113,11 @@ class MediaUtils {
             mActivity.startActivityForResult(camIntent, REQ_CAMERA);
     }
 
+    /**
+     * Function that will allow to check the permissions given to the application
+     *
+     * @param reqSource Permission requested depending on the choice of source
+     */
     private void checkPermission(int reqSource) {
         if (ContextCompat.checkSelfPermission(mActivity,
                 Manifest.permission.WRITE_EXTERNAL_STORAGE)
@@ -116,6 +138,13 @@ class MediaUtils {
         }
     }
 
+    /**
+     * Actions to be performed based on response to permission requests
+     *
+     * @param requestCode Request verification code
+     * @param permissions Requested permissions
+     * @param grantResults Result of the request for permission
+     */
     void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
             switch (requestCode) {
@@ -131,6 +160,13 @@ class MediaUtils {
         }
     }
 
+    /**
+     * Actions to be performed according to the selected image
+     *
+     * @param requestCode Request verification code
+     * @param resultCode Result verification code
+     * @param data Intent
+     */
     void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == Activity.RESULT_OK) {
             if (requestCode == REQ_CAMERA) {
@@ -147,6 +183,13 @@ class MediaUtils {
         }
     }
 
+    /**
+     * Function will allow to get the path to the selected image in the gallery
+     *
+     * @param context current context
+     * @param uri uri of the image
+     * @return path to the image
+     */
     private String getPath(Context context, Uri uri) {
         String[] projection = {MediaStore.Images.Media.DATA};
         Cursor cursor = context.getContentResolver().query(uri, projection, null, null, null);
@@ -161,6 +204,13 @@ class MediaUtils {
             return uri.getPath();
     }
 
+    /**
+     * Function that will rotate the image in the right direction if needed
+     *
+     * @param context current context
+     * @param uri uri of the image
+     * @return the image
+     */
     private Bitmap rotateImageIfNeed(Context context, Uri uri) {
 
         String filePath = getPath(context, uri);
@@ -201,6 +251,13 @@ class MediaUtils {
         return null;
     }
 
+    /**
+     * Function that will create a Bitmap file thanks to the photo taken
+     *
+     * @param context current activity
+     * @param bitmap bitmap file taken in picture
+     * @return path to the picture
+     */
     private String getFileFromBitmap(Context context, Bitmap bitmap) {
         String folderPath =  Environment.getExternalStorageDirectory() + File.separator + context.getString(R.string.app_name) + File.separator;
         File file = new File(folderPath);
@@ -225,6 +282,9 @@ class MediaUtils {
         return imageFile.getPath();
     }
 
+    /**
+     * Interface that will allow to exit the path to the image out of the class
+     */
     interface GetImg {
         void imgdata(String imgPath);
     }

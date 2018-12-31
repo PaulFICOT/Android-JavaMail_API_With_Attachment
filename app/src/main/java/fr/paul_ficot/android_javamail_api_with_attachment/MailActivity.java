@@ -14,6 +14,8 @@ import android.widget.Toast;
 import static fr.paul_ficot.android_javamail_api_with_attachment.MainActivity.isNetworkStatusAvailable;
 
 /**
+ * Class of sending of mail via SMTP GMail
+ *
  * @author Paul FICOT
  * @version 2.0
  */
@@ -27,11 +29,16 @@ public class MailActivity extends AppCompatActivity implements MediaUtils.GetImg
     private EditText lastname;
     private EditText phone;
 
-    //Initialisation des éléments d'ajout d'image
+    //Initializing image addition elements
     TextView txtPath;
     MediaUtils mMediaUtils;
     private String TAG = MailActivity.class.getSimpleName();
 
+    /**
+     * Displays the view corresponding to the method when it was created
+     *
+     * @param savedInstanceState Backing up the state of the instance
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +58,9 @@ public class MailActivity extends AppCompatActivity implements MediaUtils.GetImg
         txtPath = findViewById(R.id.txtPath_xml);
     }
 
+    /**
+     * Send the mail with the parameters defined before
+     */
     private void sendEmailWithAttachment() {
         //Obtaining the contents of the email
         String subject_mail = subject.getText().toString().trim();
@@ -62,6 +72,9 @@ public class MailActivity extends AppCompatActivity implements MediaUtils.GetImg
         sendMailWithAttachment.execute();
     }
 
+    /**
+     * Send the mail with the parameters defined before
+     */
     private void sendEmailNoAttachment() {
         //Obtaining the contents of the email
         String subject_mail = subject.getText().toString().trim();
@@ -73,6 +86,11 @@ public class MailActivity extends AppCompatActivity implements MediaUtils.GetImg
         sendMailNoAttachment.execute();
     }
 
+    /**
+     * Run the sendMail function when the button is clicked
+     *
+     * @param view current view
+     */
     public void onClickSend(View view) {
 
         if (!Config.ATTACHMENT_PATH.equals(""))
@@ -94,23 +112,47 @@ public class MailActivity extends AppCompatActivity implements MediaUtils.GetImg
         Config.ATTACHMENT_PATH = "";
     }
 
+    /**
+     * Run the openImageDialog method when the button is clicked
+     *
+     * @param view current view
+     */
     public void onClickImage(View view) {
 
         mMediaUtils.openImageDialog();
     }
 
+    /**
+     * Actions to be performed based on response to permission requests
+     *
+     * @param requestCode Request verification code
+     * @param permissions Requested permissions
+     * @param grantResults Result of the request for permission
+     */
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         mMediaUtils.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
+    /**
+     * Actions to be performed according to the selected image
+     *
+     * @param requestCode Request verification code
+     * @param resultCode Result verification code
+     * @param data Intent
+     */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         mMediaUtils.onActivityResult(requestCode, resultCode, data);
     }
 
+    /**
+     * GetImg interface of the MediaUtils class
+     *
+     * @param imgPath path to the selected image
+     */
     @Override
     public void imgdata(String imgPath) {
         Log.d(TAG, "imgdata: " + imgPath);
@@ -118,6 +160,11 @@ public class MailActivity extends AppCompatActivity implements MediaUtils.GetImg
         txtPath.setText(Config.ATTACHMENT_PATH);
     }
 
+    /**
+     * Opens the website via a browser when you click on "Paul FICOT" IF the device is connected to the internet
+     *
+     * @param view current view
+     */
     public void openBrowserInternetCheck(View view) {
 
         String link_Me = Config.LINK_ME;

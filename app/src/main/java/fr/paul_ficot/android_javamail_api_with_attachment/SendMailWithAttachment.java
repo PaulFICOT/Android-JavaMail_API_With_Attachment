@@ -23,10 +23,11 @@ import javax.mail.internet.MimeMultipart;
 
 
 /**
- * La classe étend AsyncTask, elle va effectuer une opération de mise en réseau.
+ * Send a mail without attachment
+ * The class expands AsyncTask, it will perform a networking operation.
  *
  * @author Paul FICOT
- * @version 2.0
+ * @version 2.1
  */
 public class SendMailWithAttachment extends AsyncTask<Void,Void,Void>{
 
@@ -102,12 +103,12 @@ public class SendMailWithAttachment extends AsyncTask<Void,Void,Void>{
         //Creating a new session
         Session session = Session.getDefaultInstance(props,
                 new javax.mail.Authenticator() {
-                    //Authentification du mot de passe
+                    //Password Authentication
 
                     /**
-                     * Connexion à l'adresse mail
+                     * Login to the email address
                      *
-                     * @return informations de connexion
+                     * @return login information
                      */
                     protected PasswordAuthentication getPasswordAuthentication() {
                         return new PasswordAuthentication(Config.MAIL_SENDER, Config.MAIL_SENDER_PASSWORD);
