@@ -21,4 +21,5 @@ it at https://www.gitignore.io/?templates=java
 *.zip
 *.tar.gz
 *.rar
+*.html
 hs_err_pid*
